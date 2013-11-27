@@ -92,7 +92,7 @@ class NaiveBayesClassifier(object):
 			json.dump(self.training_data,fl)
 
 
-clss = NaiveBayesClassifier()#
+clss = NaiveBayesClassifier('traindata.txt')#
 '''clss.train('AAP releases manifestos for 28 Assembly constituencies','politics')
 clss.train('FIRs filed against UP sugar mill owners','law')
 clss.train('BJP will win in four states due to anti-Congress wave: Arun Jaitley','politics')
