@@ -4,7 +4,7 @@ Naive bayes classifier written in python
 from __future__ import division
 import math,sys
 import operator
-from preprocess.preprocessor import preprocess
+from textprocess.preprocessor import preprocess
 import json
 
 
@@ -93,7 +93,7 @@ class NaiveBayesClassifier(object):
 			json.dump(self.training_data,fl)
 
 clss = NaiveBayesClassifier('trainingdata.txt')#
-print clss.classify('hkkjhjkjk nadal sfsf ')
+print clss.classify('bat andhra ')
 
 
 
