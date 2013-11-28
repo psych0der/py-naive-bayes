@@ -26,10 +26,11 @@ class NaiveBayesClassifier(object):
 					lines = fl.readlines()
 				
 					for index,data in enumerate(lines):
-						lines[index] = data.replace("\n","").split('##')
+						lines[index] = data.replace("\r\n","").split('##')
 
 					for line in lines:
-						self.train(line[0],line[1])
+						#print line[0],line[1]
+						self.train(line[0],line[1].replace(" ",""))
 			
 			except IOError:
    				print 'unable to open the file '+filename
@@ -53,7 +54,7 @@ class NaiveBayesClassifier(object):
 
 		for word in data :
 			self.training_data['labels'][label]['total_keywords']+=1
-			if word in self.training_data['labels'][label]:
+			if word in self.training_data['labels'][label]['keywords']:
 				self.training_data['labels'][label]['keywords'][word]+=1				
 			else:
 				self.training_data['labels'][label]['keywords'][word]=1
@@ -84,20 +85,15 @@ class NaiveBayesClassifier(object):
 
 			label_weights[label] = prior + term_weight
 
-		
+		print label_weights
 		return max(label_weights.iteritems(), key=operator.itemgetter(1))[0]
 
 	def save(self):
 		with open('training_data.json',"w") as fl:
 			json.dump(self.training_data,fl)
 
-
-clss = NaiveBayesClassifier('traindata.txt')#
-'''clss.train('AAP releases manifestos for 28 Assembly constituencies','politics')
-clss.train('FIRs filed against UP sugar mill owners','law')
-clss.train('BJP will win in four states due to anti-Congress wave: Arun Jaitley','politics')
-clss.train('AAP trashes BJP charge of playing religious card','politics')'''
-print clss.classify('BJP has become a party by Modi, for Modi, of Modi: Congress')
+clss = NaiveBayesClassifier('trainingdata.txt')#
+print clss.classify('hkkjhjkjk nadal sfsf ')
 
 
 
